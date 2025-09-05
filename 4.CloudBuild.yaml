@@ -1,0 +1,18 @@
+steps:
+# Step 1: Build the docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/theowaf-class65-wh/Armageddon-Task-2-CloudRun/armageddon2-cloudrun:latest', '.' ]
+
+  # Step 2: Push the Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'us-central1-docker.pkg.dev/theowaf-class65-wh/Armageddon-Task-2-CloudRun/armageddon2-cloudrun:latest' ]
+
+# This section tells Cloud Build to automatically push logs to cloud logging
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+images: 
+- 'us-central1-docker.pkg.dev/theowaf-class65-wh/Armageddon-Task-2-CloudRun/armageddon2-cloudrun:latest'
+
+
+
